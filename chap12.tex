@@ -1,0 +1,108 @@
+\chapter{Aplicaciones del Symbolic Toolbox}
+
+En este parte de libro se analizaran diversas aplicaciones que son posibles gracias a un paquete de calculo simbólico.
+
+\section{Derivadas e integrales}
+
+El paquete Symbolic Toolbox de \textbf{MATLAB} permite realizar las operaciones de derivación e integración simbólicas.
+
+\subsection{Derivadas}
+El comando \textbf{diff()} de \textbf{MATLAB} permite calcular derivadas, totales y parciales, de una expresión algebraica, función de una o varias variables y parámetros, respecto de una de ellas (o de ellos). Supongamos que nos dan una expresión $f(x)$, por ejemplo el polinomio:
+$$f(x) = a_{3}x^3 + a_{2}x^2 + a_{1}x + a_{0}$$
+
+
+y deseamos hallar sus derivadas respecto de x. Podemos hallar $\frac{df(x)}{dx}$ de dos formas:
+
+\begin{lstlisting}[language=Matlab]
+>> syms a0 a1 a2 a3 x
+>> f=a3*x^3+a2*x^2+a1*x+a0
+ 
+f =
+ 
+a3*x^3 + a2*x^2 + a1*x + a0
+ 
+>> fx=diff(f)
+ 
+fx =
+ 
+3*a3*x^2 + 2*a2*x + a1
+
+\end{lstlisting}
+
+Ya que \textbf{MATLAB} asume por defecto que la variable independiente es x, o bien especificando la variable respecto a la que queremos derivar,
+
+\begin{lstlisting}[language=Matlab]
+>>  fx=diff(f,x)
+ 
+fx =
+ 
+3*a3*x^2 + 2*a2*x + a1
+
+\end{lstlisting}
+
+
+\subsubsection{Derivada segunda} 
+La derivada segunda, $\dfrac{d^{2}f(x)}{dx^{2}}$ la obtenemos poniendo:
+\begin{lstlisting}[language=Matlab]
+>> f2x=diff(f,x,2)
+ 
+f2x =
+ 
+2*a2 + 6*a3*x
+
+\end{lstlisting}
+
+
+\subsubsection{Derivadas sucesivas}
+En este caso vamos a obtener la tercera y cuarta derivada de la función que utilizamos anteriormente:
+\begin{lstlisting}[language=Matlab]
+>> f3x=diff(f,x,3)
+ 
+f3x =
+ 
+6*a3
+ 
+>> f4x=diff(f,x,4)
+ 
+f4x =
+ 
+0
+
+\end{lstlisting}
+
+\subsection{Integrales}
+El comando \textbf{int()} de \textbf{MATLAB} permite resolver integrales, tanto indefinidas como definidas. Sea la funcion $f(x)=x^{2}$. Para hallar la integral $\int f(x)dx$, indefinida, basta con poner:
+
+\begin{lstlisting}[language=Matlab]
+>> syms a b x
+>> f=x^2
+ 
+f =
+ 
+x^2
+ 
+>> int(f)
+ 
+ans =
+ 
+x^3/3
+ 
+\end{lstlisting}
+
+\subsection{Integral definida}
+Para obtener la integral definida debemos agregar al comando los limites de integración de la siguiente forma:
+
+\begin{lstlisting}[language=Matlab]
+>> int(f,a,b)
+ 
+ans =
+ 
+b^3/3 - a^3/3
+ 
+>> int(f,1,2)
+ 
+ans =
+ 
+7/3
+
+\end{lstlisting}

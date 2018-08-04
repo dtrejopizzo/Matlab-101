@@ -1,0 +1,109 @@
+\documentclass[10pt,a4paper,final]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{array, xcolor, lipsum, bibentry}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{titlesec, blindtext, color}
+\definecolor{darkblue}{rgb}{0.089,0.21,0.363}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\colorlet{light-gray}{gray!20}
+
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{eso-pic}
+\par\normalfont\fontsize{12}{12}\sffamily\selectfont
+\definecolor{lightgray}{gray}{0.8}
+\newcolumntype{L}{p{0.14\textwidth}}
+\newcolumntype{R}{p{0.9\textwidth}}
+\newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
+\renewcommand*\contentsname{Contenido}
+\newcommand{\thechapterimage}{}
+\newcommand{\chapterimage}[1]{\renewcommand{\thechapterimage}{#1}}
+\usepackage{fancyhdr}
+
+\begin{document}
+
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+
+
+\fancypagestyle{plain}{
+\fancyhf{} % clear all header and footer fields
+\fancyhead[l]{} % except the center
+\fancyfoot[RO,LE]{\thepage} % except the center
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+
+\pagestyle{plain}
+
+\begingroup
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate [below=12cm] (midpoint) at (current page.north);
+\node at (current page.north west)
+{\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{Imagenes/back}}; % Background image
+\draw[anchor=north] (midpoint) node [fill=white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering Introduccion a Matlab\\[15pt] % Book title
+{\Large Ejemplos practicos para analisis matematico, control y simulacion}\\[20pt] % Subtitle
+{\huge dt}}}; % Author name
+\end{tikzpicture}};
+\end{tikzpicture}
+\vfill
+\endgroup
+
+\newpage
+
+dt (David Alejandro Trejo Pizzo)\\
+
+dtrejopizzo@gmail.com\\
+
+\url{www.dtrejo.com.ar}
+
+\newpage
+
+
+\par\normalfont\fontsize{12}{12}\sffamily\selectfont
+
+\tableofcontents
+\addtocontents{toc}{~\hfill\textbf{Pagina}\par}
+
+\input{chap1}
+\input{chap2}
+\input{chap3}
+\input{chap4}
+\input{chap5}
+\input{chap6}
+\input{chap7}
+\input{chap8}
+\input{chap9}
+\input{chap10}
+\input{chap11}
+\input{chap12}
+
+\end{document}

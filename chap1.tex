@@ -1,0 +1,238 @@
+\chapter{Introduccion a Matlab}
+
+\textbf{MATLAB} (MATrix LABoratory) es un paquete interactivo para calculo científico (aritmético y simbólico), basado en matrices. \textbf{MATLAB} es fácil de emplear y, en principio, no requiere del conocimiento de un lenguaje de programación. \textbf{MATLAB} concentra en un solo programa un buen número de posibilidades de cálculo científico y es, hoy por hoy, uno de los entornos de trabajo más empleados en muy distintos campos de la Ingeniera. \textbf{MATLAB} sirve para:
+\begin{itemize}
+\item Realizar cálculos aritméticos (como una calculadora).
+\item Realizar calculo simbólico (con la posibilidad de hacer operaciones como derivar funciones, calcular primitivas, realizar transformaciones, entre otras).
+\item Programar en un lenguaje no compilado.
+\item Realizar gráficos en 2 y 3 dimensiones.
+\item Acceder a paquetes con aplicaciones tan diversas como el tratamiento de señales, simulación de redes neuronales, o métodos numéricos avanzados.
+\end{itemize}
+
+Hay dos modos de trabajo con \textbf{MATLAB}:
+\begin{itemize}
+\item Trabajo interactivo (Workspace), donde el usuario realiza una consulta (escribe una operación) y el programa la ejecuta.
+\item Trabajo programado (M-files), donde el usuario genera uno o varios ficheros con conjuntos
+de instrucciones \textbf{MATLAB}, que se pueden ejecutar repetidas veces (con distintos datos)
+desde el modo interactivo. De esta forma, el usuario puede incrementar las funciones disponibles en \textbf{MATLAB}, añadiendo las suyas propias.
+\end{itemize}
+
+\section{Características}
+
+\textbf{MATLAB} es un paquete de software orientado hacia el calculo numérico científico e ingenieril. Integra calculo numérico, computación de matrices y gráficos en un entorno de trabajo cómodo para el usuario. Su nombre significa Laboratorio de Matrices y fue escrito inicialmente en base a los ya existentes paquetes de calculo matricial LINPACK y EISPACK. Posteriormente se han añadido librerías, denominadas Toolboxes, especializadas en diferentes áreas científicas. De entre ellas podemos destacar:
+\begin{itemize}
+\item Simulink Toolbox
+\item Control System Toolbox
+\item System Identication Toolbox
+\item Robust Conntrol Toolbox
+\item Signal Processing Toolbox
+\item Filter Design Toolbox
+\item Symbolic Math Toolbox
+\item Fuzzy Logic Toolbox
+\item Partial Differential Equation Toolbox, entre otros
+\end{itemize}
+
+\textbf{MATLAB} ha evolucionado y crecido con las aportaciones de muchos usuarios. En entornos universitarios se ha convertido, junto con \textbf{Mathematica} y \textbf{Maple}, en una herramienta instructora básica para cursos de matemáticas aplicadas así como para cursos avanzados en otras áreas. En entornos industriales se utiliza para investigar y resolver problemás prácticos y cálculos de ingeniería. Son aplicaciones típicas el cálculo numérico, la realización de algoritmos, la resolución de problemás con formulación matricial, la estadística, la optimización, etc. Es de destacar la aplicación en el estudio, simulación y diseño de los sistemás dinámicos y de control. \textbf{MATLAB} también permite escribir funciones y exportar código a otros lenguajes como C y Java, entre otros.
+
+\section{Funcionamiento}
+
+\textbf{MATLAB} es un programa interprete de comandos. Esto quiere decir que es capaz de procesar de modo secuencial una serie de comandos previamente definidos, obteniendo de forma inmediata los resultados. Los comandos pueden estar ya definidos en el propio \textbf{MATLAB} y pueden también ser definidos por el usuario. Para que \textbf{MATLAB} pueda realizar este proceso el usuario ha de escribir la lista de comandos en la ventana de comandos, si su numero es reducido, o en un fichero con extensión .m, constituyendo entonces un programa.
+
+El método que debe seguirse para procesar los datos es muy simple:
+\begin{enumerate}
+\item El usuario escribe expresiones en la ventana de comandos, o bien en un archivo de
+texto apropiado (archivo.m).
+\item Tras la orden de ejecución enter (o escribir el nombre del fichero), \textbf{MATLAB} procesa
+la información.
+\item \textbf{MATLAB} Escribe los resultados en la ventana de comandos y los gráficos (si los hubiere) en otras ventanas gráficas.
+\end{enumerate}
+
+\section{Generalidades}
+
+Antes de adentrarnos en la sintaxis de \textbf{MATLAB} es conveniente hacer algunas consideraciones:
+
+\begin{itemize}
+\item \textbf{MATLAB} distingue entre mayúsculas y minúsculas, cuestión que habrá que tener en cuenta cuando se adjudiquen nombres a variables ó funciones.
+\item El símbolo $\div$ precede a todo comentario de texto, \textbf{MATLAB} ignora (y no interpreta por consiguiente) todo lo que vaya precedido por este símbolo.
+\item La ayuda de \textbf{MATLAB} es muy útil, basta con teclear en la línea de comando $help$ para poder ver el listado completo de funciones disponibles, comandos y variables predefinidas. La sintaxis de una función en particular, por ejemplo $rem$, se puede obtener tecleando $help rem$.
+\end{itemize}
+
+\section{Sintaxis}
+
+Para escribir las expresiones es preciso respetar ciertas reglas sintácticas propias de \textbf{MATLAB}. Algunas se parecen bastante a las de otros lenguajes de programación por lo que no resultarán complejas al conocedor de algún lenguaje de programación.
+
+\subsection{Expresiones en Matlab: noción general}
+
+Están formadas por cadenas de caracteres, números y operadores algebraicos. Las cadenas de caracteres pueden ser símbolos
+de variables (matrices) o funciones de \textbf{MATLAB}. Las mayúsculas y minúsculas son distintas. Podemos distinguir dos
+tipos de expresiones: numéricas (propias de \textbf{MATLAB}) y simbólicas (propias de Maple). Una expresión numérica puede
+contener símbolos (nombres de variables) pero estos han de estar previamente asignadas a valores numéricos. Las expresiones
+del tipo:
+\begin{lstlisting}[language=Matlab]
+>> a = 2; b = 3;
+>> a + b
+\end{lstlisting}
+
+son numéricas; el valor de a + b es hallado y mostrado por \textbf{MATLAB} inmediatamente:
+\begin{lstlisting}[language=Matlab]
+ans = 5. 
+\end{lstlisting}
+
+Sin embargo, una expresión simbólica puede contener símbolos sin valor numérico asignado. Si escribimos:
+\begin{lstlisting}[language=Matlab]
+>> syms x
+>> p = 2*x^2 - 7;
+\end{lstlisting}
+
+la primer sentencia genera una variable simbólica, y en la segunda sentencia se almacena una función bajo el nombre p. Con la siguiente sentencia se reemplaza en la función p, el valor de  x por 1 y se resuelve (siempre que se pueda)
+\begin{lstlisting}[language=Matlab]
+>> subs(p,x,1)
+\end{lstlisting}
+
+que dará como resultado:
+\begin{lstlisting}[language=Matlab]
+ans = 5.
+\end{lstlisting}
+
+\subsection{Operadores}
+
+Hay operadores para números (reales o complejos) y para matrices:
+\begin{itemize}
+\item operadores numéricos: 
+\begin{lstlisting}[language=Matlab]
++ - * / ^
+\end{lstlisting}
+\item Números complejos: Esta definida la unidad imaginaria, $\sqrt{-1}$, que se denota indistintamente por los símbolos i y j
+\item operadores matriciales:
+\begin{lstlisting}[language=Matlab]
+ + - * / \ ^
+\end{lstlisting}
+\item Para matrices elemento por elemento: 
+\begin{lstlisting}[language=Matlab]
+.+ .- .* ./ .^
+\end{lstlisting}
+\end{itemize} 
+
+Los operadores para números se colocan entre dos números y dan como resultado otro numero. Por ejemplo 2 + 3 o a + b, si a y b han sido asignadas previamente a números. Los operadores para matrices se colocan entre dos matrices y dan como resultado otra matriz. Los operadores de relación son para números reales, se colocan entre dos números y dan como resultado 1, que significa cierto, o 0, que significa falso. El significado de todos ellos resulta obvio, si bien conviene aclarar que el operador == significa igual, en el sentido de condición (por ejemplo a==b puede ser cierto o falso), y es diferente del operador = que sirve para asignar un valor a una variable (por ejemplo a=3) significa dar a la variable a el valor de 3. El operador $\backsim=$ significa distinto, también en el sentido de condición. Los operadores de condición se utilizan, sobre todo, en las estructuras de programación if-then-else, for, y while. Para delimitar las matrices se utilizan los corchetes [ ]. Para separar elementos consecutivos,
+ el espacio en blanco (barra espaciadora) o la coma, y para pasar de fila la tecla enter o el punto y coma (;). La traspuesta conjugada de una matriz de números complejos A se representa por A'. Otros operadores, para usos varios, son:
+\begin{itemize}
+\item Ayudas al usuario: who (sirve para ver las variables que se han usado), help (ver la ayuda de \textbf{MATLAB}), save (guardar un archivo, un fichero .m o una variable), load (cargar un archivo).
+\item Operaciones lógicas: 
+\begin{lstlisting}[language=Matlab]
+& (AND), ! (OR), ~ (NOT)
+\end{lstlisting}
+\end{itemize}
+
+\subsection{Formatos}
+
+Cuando \textbf{MATLAB} nos muestra un valor real, por defecto nos muestra solo 5 cifras significativas (formato corto). S puede modificar la forma de mostrar los valores mediante el comando \textbf{format}. A continuación se brinda una lista de los comandos usados para modificar el formato de la cantidad de cifras significativas, y un ejemplo:
+
+\begin{itemize}
+\item \textbf{format long}: 14 cifras significativas
+\item \textbf{format short}: formato corto de 5 cifras significativas
+\item \textbf{format}: formato por defecto, igual a \textbf{format short}
+\item \textbf{format short e}: formato corto y notación exponencial
+\item \textbf{format long e}: formato largo y notación exponencial
+\item \textbf{format rat}: formato racional, aproximación en forma de fracción
+\end{itemize}
+
+\noindent
+Pruebe el siguiente ejemplo \texttt{ejemplo1.m}:
+
+\begin{lstlisting}[language=Matlab]
+>> a = .0001234567
+
+a =
+  1.2346e-004
+
+>> format long
+>> a
+
+a =
+    1.234567000000000e-004
+
+>> format rat
+>> a
+
+a =
+       1/8100  
+>> 
+\end{lstlisting}
+
+\subsection{Variables predefinidas}
+
+Hay algunos nombres que están predefinidos en \textbf{MATLAB}:
+
+\begin{itemize}
+\item \textbf{ans}: variable del sistema para almacenar el resultado de evaluar expresiones
+\item \textbf{i,j}: unidad imaginaria
+\item \textbf{pi}: número $\pi$
+\item \textbf{Inf}: Infinito, número mayor que el más grande que se puede almacenar
+\item \textbf{NaN}: "Not a Number", magnitud no numérica resultado de cálculos indefinidos
+\end{itemize}
+
+\begin{lstlisting}[language=Matlab]
+>> 6/5
+
+ans =
+    1.2000
+
+>> b = 5/0
+
+b =
+   Inf
+
+>> b/b
+
+ans =
+   NaN
+>> 
+\end{lstlisting}
+
+\subsection{Comandos utilitarios y de ayuda}
+
+MATLAB dispone de algunos comandos que son muy útiles para acceder a la ayuda del programa o para pedir ayuda especifica sobre un comando:
+
+\begin{itemize}
+\item \textbf{help}: Lista todos los tópicos de ayuda.
+\item \textbf{help ops}: Lista de operadores y caracteres especiales.
+\item \textbf{help lang}: Lista de comandos de programación.
+\item \textbf{help clear}: Ayuda sobre el comando clear. Si utilizamos el comando \textbf{help} seguido de un comando especifico, accederemos a la ayuda para ese comando.
+\item \textbf{lookfor texto}: Lista de los comandos/funciones en cuyas explicaciones aparece la cadena de texto.
+\item \textbf{clc}: Limpia la ventana de comandos.
+\end{itemize}
+
+\subsection{Comandos sobre ficheros}
+
+Los ficheros se pueden utilizar para guardar el valor de todas o algunas de las variables usadas en una sesión, agrupar un conjunto de sentencias que puedan utilizarse en cualquier momento, almacenar todas las sentencias ejecutadas durante una sesión de trabajo, definir nuevas funciones, entre otras. Los comandos más usados son:
+
+\begin{itemize}
+\item \textbf{save fich v1,v2}: guarda en el fichero \textbf{fich.mat} los nombrs y los valores de las variables especificadas. Los ficheros creados por este sistema son ficheros binarios, no de texto.
+\item \textbf{load fichero.mat}: recupera las variables almacenadas en un fichero ***.mat
+\item \textbf{diary fichero ... comandos ... diary off}: Hace que se guarden en el fichero \textbf{fichero} todas las ordenes, con sus resultados, entre las ordenes diary. l fichero obtenido es ASCII, por lo tanto, se puede editar e imprimir.
+\item \textbf{dir}: lista todos los ficheros del directorio actual.
+\item \textbf{type fichero}: muestra por pantalla el contenido del fichero indicado.
+\item \textbf{delete fichero}: borra el fichero especificado.
+\item \textbf{cd path}: cambia el directorio actual al indicado mediante path.
+\item \textbf{pwd}: indica el directorio actual.
+\end{itemize}
+
+\section{Funciones elementales}
+
+\textbf{MATLAB} dispone de las funciones elementales más comunes (las que tienen las calculadoras de bolsillo) y otras especiales, propias. Realizan una operación sobre un argumento numérico dado de tipo matriz y operan elemento por elemento. Las más usuales son:
+\begin{itemize}
+\item Trigonométricas: sin (seno), cos (coseno), tan (tangente), asin (inversa), acos, atan, sinh (seno hiperbólico), cosh (coseno hiperbólico), tanh (tangente hiperbólica), asinh, acosh, atanh.
+\item Lógicas: any, all, and, exist, isnan, finite, isempty, isstr, strcomp.
+\item Otras: abs (valor absoluto), angle (angulo), sqrt (raiz cuadrada), real (parte real), imag (parte imaginaria), conj (conjugado), round (redondeo), fix (redondeo a cero), floor (aproximar al infinito negativo), ceil (aproximar al infinito positivo), sign (funcion signo), rem (resto), exp (exponencial), log (logaritmo natural), log10 (logaritmo en base 10).
+\item Especiales: bessel, gamma, rat, ert, invertf, ellipk, ellipj
+\end{itemize}
+
+
+
+\section{Entorno de trabajo}
+
+Los manuales de \textbf{MATLAB} explican detalladamente los conceptos, comandos y procedimientos del programa. Aquí vamos realizar una introducción a su manejo mediante algunos ejemplos. Se recomienda que el alumno realice por su cuenta otros ejercicios parecidos y trate de utilizar \textbf{MATLAB} para resolver problemás de Matemáticas, Física y otras asignaturas. La instalación se realiza automáticamente con el CD de \textbf{MATLAB}. Una vez instalado el programa, al picar con el ratón en el icono de \textbf{MATLAB} aparece en la pantalla la ventana:
+
+\includegraphics[width=400pt]{./Imagenes/ventana.png} 
+
+Esta ventana se llama \textbf{MATLAB} command window y es en la que el usuario opera. En la primera linea aparecen las opciones disponibles.

@@ -1,0 +1,175 @@
+\chapter{Operaciones numericas}
+
+\textbf{MATLAB} puede operar como una calculadora: si el usuario escribe las ordenes apropiadas, los resultados aparecen en la ventana de comandos (Command Window). Observe que si se coloca $;$ (punto y coma) al final de la expresión el resultado no se escribe en la pantalla. Es capaz de realizar las operaciones aritméticas suma, resta, multiplicación, división y potenciación, con números (reales y complejos), con vectores (polinomios) y con matrices. Además, mediante la librería Symbolic Math Toolbox, se puede también operar con expresiones simbólicas.
+
+\section{Operaciones aritméticas}
+
+Las operaciones aritméticas con números son, quizás, las más sencillas que pueden efectuarse. Para ilustrar su realización, a continuación se muestran una serie de líneas que comienzan con $>>$, indicativo (o prompt) de la pantalla de comandos en una sesión de $Matlab$, seguido de una orden y del resultado que aparecerá inmediatamente en la pantalla si se ejecutara. Para comenzar...
+
+\paragraph{Operar sin asignar el resultado a una variable:}si el usuario no ha asignado el resultado a una variable, \textbf{MATLAB} lo hace utilizando la
+variable $ans$.
+\begin{lstlisting}[language=Matlab]
+>> 2 + 2 % y luego hacer ENTER
+\end{lstlisting}
+
+... y el resultado es...
+
+\begin{lstlisting}[language=Matlab]
+>> 2 + 7
+ans = 9
+\end{lstlisting}
+
+\paragraph{Asignar el resultado a una variable:}si el calculo se asigna a una variable, este queda guardado en dicha variable:
+\begin{lstlisting}[language=Matlab]
+>> a = 2 + 7
+a = 9
+\end{lstlisting}
+
+\paragraph{Conocer el valor de una variable:}para conocer el valor de una variable, solo debemos teclear el nombre de dicha variable:
+\begin{lstlisting}[language=Matlab]
+>> a
+a = 9
+\end{lstlisting}
+
+\paragraph{Como evitar mostrar siempre el resultado:}si se añade un punto y coma ( ; ) al finalizar un renglón de la línea de comando, el programa no muestra la respuesta...
+\begin{lstlisting}[language=Matlab]
+>> j = 2 + 6;
+\end{lstlisting}
+
+... pero de igual forma la realiza, aunque no muestre el resultado:
+\begin{lstlisting}[language=Matlab]
+>> j
+j = 8
+\end{lstlisting}
+
+\paragraph{Orden de las operaciones a evaluar:}las operaciones se evalúan por el orden usual de prioridad: primero las potencias, después las multiplicaciones y divisiones y, finalmente, las sumás y restas. Las operaciones de igual prioridad se evalúan de izquierda a derecha:
+\begin{lstlisting}[language=Matlab]
+>> 2/4*3
+ans = 1.500
+>> 2/(4*3)
+ans = 0.1.667
+\end{lstlisting}
+
+\paragraph{Algunas funciones matemáticas:}las funciones matemáticas usuales están disponibles (llamadas built-in functions) y su sintaxis es la habitual en matemática. Por ejemplo:
+\begin{lstlisting}[language=Matlab]
+>> cos(pi)
+ans = -1
+\end{lstlisting}
+
+La función exponencial es $exp$:
+\begin{lstlisting}[language=Matlab]
+>> exp(1)
+ans = 2.7183
+\end{lstlisting}
+
+
+\paragraph{Variables con valor predeterminado:}$\pi$ es una variable con valor predeterminado que en el formato de números por defecto al iniciar la sesión de \textbf{MATLAB} es:
+\begin{lstlisting}[language=Matlab]
+>> pi
+pi = 3.1416
+\end{lstlisting}
+
+Hay muchas otras variables con valor predeterminado, que se pierde si se les asigna otro valor. Por ejemplo, el epsilon de la máquina es $eps$:
+\begin{lstlisting}[language=Matlab]
+>> eps
+eps = 2.2204e-16
+\end{lstlisting}
+
+\paragraph{Cantidad de decimales:}desde la línea de comando se puede controlar el número de decimales con que se muestra el valor de las variables o cálculos. Esto no determina la precisión con que se realizan los cálculos sino el formato con que se muestran en pantalla.
+\begin{lstlisting}[language=Matlab]
+>> 1/6
+ans = 0.1667
+>>
+>> format long
+>> 1/6
+ans = 0.166666666666667
+\end{lstlisting}
+
+Se sugiere mirar la ayuda de format (en la línea de comando teclear help format ) para mirar la variedad de formatos de salida para números en la pantalla. Para retornar al modo de visualización por defecto (format short) teclear format en la línea de comando.
+
+\paragraph{Conocer las variables que hemos usado:}en muchas oportunidades resulta de interés conocer las variables que están definidas hasta una determinada instancia de la sesión. Si usamos el comando $who$ veremos las variables usadas.
+\begin{lstlisting}[language=Matlab]
+>> who
+a j
+\end{lstlisting}
+
+\paragraph{Dejar en cero una variable:}como método rápido para borrar todos los datos de una variable podemos hacer:
+\begin{lstlisting}[language=Matlab]
+>> a = [1 2];
+>> a = 0;
+\end{lstlisting}
+
+\paragraph{Eliminar una variable:}para eliminar una variable, utilizamos el comando $clear$:
+\begin{lstlisting}[language=Matlab]
+>> clear a
+>> who
+j
+\end{lstlisting}
+
+
+\section{Números complejos}
+
+La forma de operar con números complejos es igual que para los reales. Veamos un ejemplo aplicando la formula para obtener las raíces de una función cuadrática.
+
+\begin{lstlisting}[language=Matlab]
+>> a=1; b=2; c=3;
+>> x1=(-b+sqrt(b^2-4*a*c))/(2*a)
+x1 =
+-1.0000 + 1.4142i
+>> x2=(-b-sqrt(b^2-4*a*c))/(2*a)
+x2 =
+-1.0000 - 1.4142i
+>> a*x1^2+b*x1+c
+ans =
+0
+\end{lstlisting}
+
+\paragraph{Escribir un complejo:}
+\begin{lstlisting}[language=Matlab]
+>> c1=1+2*i
+c1 =
+1.0000 + 2.0000i
+>> c2=1-2*i
+c2 =
+1.0000 - 2.0000i
+\end{lstlisting}
+
+
+
+
+\section{Operaciones con variables lógicas:}
+
+Las variables lógicas son vectores ó matrices cuyos elementos toman los valores 0 $falso$ ó 1 $verdadero$. Por ejemplo:
+\begin{lstlisting}[language=Matlab]
+>> v3=[10 4 8];
+>> compara = v3>5
+compara =
+		1 0 1
+\end{lstlisting}
+
+La variable $compara$ es un vector que indica que las componentes 1 y 3 cumplen la condición de ser mayores que 5. Si se desease obtener un vector solo con las componentes que cumplen la condición:
+\begin{lstlisting}[language=Matlab]
+>> v4=v3(v3>5);
+>> v4
+v4 =
+		10 8
+\end{lstlisting}
+
+\paragraph{Comparar dos vectores:} si se comparan dos vectores:
+\begin{lstlisting}[language=Matlab]
+>> v5=[4 5 8];
+>> iguales = v3 ==v5
+iguales =
+		0 0 1
+\end{lstlisting}
+hay coincidencia en la tercera componente.
+
+\paragraph{Encontrar elementos que cumplan una condición:}las variables lógicas pueden ser usadas para realizar búsquedas dentro de vectores y matrices. El comando $find$ permite buscar dentro de vectores y matrices los elementos que cumplan con alguna condición requerida. Por ejemplo:
+\begin{lstlisting}[language=Matlab]
+>> x=sin(2*pi/5*(0:4))
+x =
+		0.00000 0.95106 0.58779 -0.58779 -0.95106
+>> find(x<0.5)
+ans =
+		1 4 5
+\end{lstlisting}

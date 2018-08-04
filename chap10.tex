@@ -1,0 +1,32 @@
+\chapter{Creación de animaciones}
+
+Para preparar pequeñas películas o movies se pueden utilizar las funciones $movie$, $moviein$ y $getframe$. Una película se compone de varias imágenes, denominadas frames. La función \textbf{getframe}  devuelve un vector columna con la información necesaria para reproducir la imagen que se acaba de representar en la figura o ventana gráfica activa, por ejemplo con la función plot. El tamaño de este vector columna depende del tamaño de la ventana, pero no de la complejidad del dibujo. La función \textbf{moviein(n)} reserva memoria para almacenar \textbf{n} frames. La siguiente lista de comandos crearía una película de 17 imágenes o frames, que se almacenarán como las columnas de la matriz M:
+
+\begin{lstlisting}[language=Matlab]
+>> M = moviein(170);
+>> x=[-2*pi:0.1:2*pi]';
+>> for j=1:170
+>> y=sin(x+j*pi/8);
+>> plot(x,y);
+>> M(:,j) = getframe;
+>> end 
+\end{lstlisting}
+
+Una vez creada la película se puede representar el número de veces que se desee con el comando \textbf{movie}. Por ejemplo, para representar 10 veces la película anterior, a 15 imágenes por segundo,habría que ejecutar el comando siguiente (los dos últimos parámetros son opcionales): 
+
+\begin{lstlisting}[language=Matlab]
+movie(M,10,15)
+\end{lstlisting}
+
+Los comandos \textbf{moviein}, \textbf{getframe} y \textbf{movie} tienen posibilidades adicionales para las que puede consultarse el Help correspondiente. Hay que señalar que en \textbf{MATLAB} no es lo mismo un movie que una animación. Una animación es simplemente una ventana gráfica que va cambiando como consecuencia de los comandos que se van ejecutando. Un movie es una \textit{animación grabada o almacenada en memoria previamente}.
+
+Las películas pueden generarse de dos maneras: guardando fotogramas en el disco (normalmente utilizando print) y luego utilizar un programa externo para crear la película o mediante los comandos \textbf{getframe}, \textbf{movie}, de forma tal de que \textbf{MATLAB} genere un archivo de video.
+\begin{lstlisting}[language=Matlab]
+>> for k = 1:16 
+>>    plot(fft(eye(k+16))) 
+>>    axis equal 
+>>    M(k) = getframe; 
+>> end 
+>> movie(M,1); %play the movie 
+>> movie2avi(M,'mi_peli','fps',1); 
+\end{lstlisting}

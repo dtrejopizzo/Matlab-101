@@ -1,0 +1,78 @@
+\chapter{Archivos en Matlab}
+
+En muchas situaciones se necesita grabar datos a un archivo o bien leerlos desde un archivo. Los comandos save y load permiten escribir o leer, respectivamente, datos (matrices en general) en o desde el disco. Hay muchas opciones disponibles pero solo detallaremos el formato ASCII o de texto en \textbf{MATLAB}.
+
+Si el vector o matriz x se graba en un archivo en formato ASCII con el nombre datos.dat bastará con escribir en la línea de comando:
+\begin{lstlisting}[language=Matlab]
+>> save -ascii datos.dat x
+\end{lstlisting}
+
+Por ejemplo:
+\begin{lstlisting}[language=Matlab]
+>> x=sin(2*pi*(0:0.1:1));
+>> x=x';
+>> save seno.dat x -ascii
+\end{lstlisting}
+
+El vector x se guardará en un archivo en formato ascii (texto) con el nombre seno.dat. En este caso la variable x es un vector columna y se guarda en esa forma (una línea, salto de fila, otra fila y así sucesivamente). Si se examina el archivo con un editor de texto se ve de la siguiente manera:
+\begin{lstlisting}[language=Matlab]
+0.0000000e+000
+5.8778525e-001
+9.5105652e-001
+9.5105652e-001
+5.8778525e-001
+1.2246468e-016
+-5.8778525e-001
+-9.5105652e-001
+-9.5105652e-001
+-5.8778525e-001
+-2.4492936e-016
+\end{lstlisting}
+
+Este archivo se puede leer desde \textbf{MATLAB}, enviar por e-mail, ser importado por alguna aplicación (por ejemplo una planilla electrónica de cálculo), etc. El comando load permite leer archivos desde disco. Hay muchas opciones disponibles pero solo detallaremos la lectura de archivos en el formato ASCII o de texto en \textbf{MATLAB}. Para otros formatos puede consultarse el manual de \textbf{MATLAB}.\\
+Por ejemplo:
+\begin{lstlisting}[language=Matlab]
+>> clear x % se borra la variable x del espacio de trabajo.
+>> load seno.dat -ascii
+>> who
+Your variables are:
+	seno
+>> seno
+
+seno =
+	0
+	5.877852500000000e-001
+	9.510565200000000e-001
+	9.510565200000000e-001
+	5.877852500000000e-001
+	1.224646800000000e-016
+	-5.877852500000000e-001
+	-9.510565200000000e-001
+	-9.510565200000000e-001
+	-5.877852500000000e-001
+	-2.449293600000000e-016
+>>
+
+\end{lstlisting}
+
+Los valores de la variable seno son los que estaban en el archivo seno.dat. Ahora supongamos que se genera un archivo con el editor de texto. Por ejemplo:
+\begin{lstlisting}[language=Matlab]
+6801
+6802
+6803
+\end{lstlisting}
+
+y se graba desde el editor con el nombre legajos.txt.
+\begin{lstlisting}[language=Matlab]
+>> load legajos.txt
+>> who
+	legajos
+>> legajos
+legajos =
+
+	6801
+	6802
+	6803
+\end{lstlisting}
+
+La variable legajos se generó en el espacio de trabajo con el contenido del archivo legajos.txt.
